@@ -53,55 +53,33 @@ void saveStock()
 void stockmenu()
 {
     loadStock();
+    int choice;
 
     while (1)
     {
-        int choice;
-        printf("\n1.Stock In\n");
-        printf("2.Stock Out\n");
-        printf("3.Display Stock\n");
-        printf("4.Exit\n");
-        printf("Enter Choice: ");
+        printf("\n--- STOCK MENU ---\n");
+        printf("1. Stock In\n");
+        printf("2. Stock Out\n");
+        printf("3. Display Stock\n");
+        printf("4. Exit\n");
+        printf("Enter choice: ");
         scanf("%d", &choice);
 
-        if (choice == 1) /* STOCK IN */
+        if (choice == 1)
         {
             int id, qty, found = 0;
 
             printf("Enter Item ID: ");
-            scanf("%d", &id);
+            scanf("%d", &stockcollection[stockcount].itemid);
 
-            for (int i = 0; i < stockcount; i++)
-            {
-                if (stockcollection[i].itemid == id)
-                {
-                    printf("Enter Quantity to Add: ");
-                    scanf("%d", &qty);
+            printf("Enter Quantity: ");
+            scanf("%d", &stockcollection[stockcount].quantity);
 
-                    stockcollection[i].quantity += qty;
-                    found = 1;
-                    break;
-                }
-            }
-
-            if (!found)
-            {
-                stockcollection[stockcount].itemid = id;
-
-                printf("Enter Item Name: ");
-                scanf("%s", stockcollection[stockcount].itemname);
-
-                printf("Enter Quantity: ");
-                scanf("%d", &stockcollection[stockcount].quantity);
-
-                stockcount++;
-            }
-
+            stockcount++;
             saveStock();
             printf("Stock updated successfully.\n");
         }
-
-        else if (choice == 2) /* STOCK OUT */
+        else if (choice == 2)
         {
             int id, qty, found = 0;
 
@@ -112,34 +90,21 @@ void stockmenu()
             {
                 if (stockcollection[i].itemid == id)
                 {
-                    printf("Enter Quantity to Remove: ");
+                    printf("Enter Quantity to remove: ");
                     scanf("%d", &qty);
-
-                    if (stockcollection[i].quantity >= qty)
-                    {
-                        stockcollection[i].quantity -= qty;
-                        printf("Stock removed successfully.\n");
-                    }
-                    else
-                    {
-                        printf("Not enough stock!\n");
-                    }
+                    stockcollection[i].quantity -= qty;
                     found = 1;
                     break;
                 }
             }
-
-            if (!found)
-                printf("Item not found!\n");
-
+            if (!found) printf("Item not found!\n");
             saveStock();
         }
-
-        else if (choice == 3) /* DISPLAY */
+        else if (choice == 3)
         {
             for (int i = 0; i < stockcount; i++)
             {
-                printf("\nItem ID: %d\nName: %s\nQuantity: %d\n",
+                printf("\nItem ID: %d\nQuantity: %d\n",
                        stockcollection[i].itemid,
                        stockcollection[i].itemname,
                        stockcollection[i].quantity);
@@ -150,6 +115,6 @@ void stockmenu()
             break;
 
         else
-            printf("Invalid Choice\n");
+            printf("Invalid choice!\n");
     }
 }

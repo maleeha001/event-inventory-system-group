@@ -4,6 +4,7 @@
 
 /* ================= DATE STRUCT ================= */
 struct date
+
 {
     int day;
     int month;
@@ -20,6 +21,7 @@ struct item
 
 struct item itemcollection[100];
 int itemcount = 0;
+static FILE *fp;
 
 FILE *fp;
 
@@ -49,24 +51,23 @@ void saveToFile()
     }
 }
 
-/* ================= ITEM MENU ================= */
+/* ---------- ITEM MENU ---------- */
 
 void itemmenu()
 {
+    loadFromFile();
     int choice;
 
     while (1)
     {
-        printf("\n--- ITEM INVENTORY MENU ---\n");
+        printf("\n--- ITEM MENU ---\n");
         printf("1. Add Item\n");
         printf("2. Display Items\n");
-        printf("3. Search Item\n");
-        printf("4. Delete Item\n");
-        printf("5. Exit\n");
-        printf("Enter Choice: ");
+        printf("3. Exit\n");
+        printf("Enter choice: ");
         scanf("%d", &choice);
 
-        if (choice == 1) // Add Item
+        if (choice == 1)
         {
             printf("Enter Item ID: ");
             scanf("%d", &itemcollection[itemcount].itemid);
@@ -78,10 +79,9 @@ void itemmenu()
             scanf("%d", &itemcollection[itemcount].quantity);
 
             itemcount++;
-            saveToFile();   // save after adding
-            printf("Item Added Successfully!\n");
+            saveToFile();
         }
-        else if (choice == 2) // Display Items
+        else if (choice == 2)
         {
             if (itemcount == 0)
             {
@@ -89,7 +89,7 @@ void itemmenu()
             }
             for (int i = 0; i < itemcount; i++)
             {
-                printf("\nItem ID: %d\nName: %s\nQuantity: %d\n",
+                printf("\nID: %d\nName: %s\nQty: %d\n",
                        itemcollection[i].itemid,
                        itemcollection[i].itemname,
                        itemcollection[i].quantity);
@@ -145,9 +145,7 @@ void itemmenu()
             break;
         }
         else
-        {
-            printf("Invalid Choice!\n");
-        }
+            printf("Invalid choice!\n");
     }
 }
 

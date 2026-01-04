@@ -27,7 +27,7 @@ struct vendor
     char contact[20];
 };
 
-struct stockin
+struct stock
 {
     int stockid;
     int vendorid;
@@ -44,11 +44,23 @@ struct stockout
 
 /* ===== FUNCTION DECLARATIONS ===== */
 
+void loadData();
+
+
+/* ITEM MODULE */
 void itemmenu();
+void loadFromFile();
+void saveToFile();
+
+/* VENDOR MODULE */
 void vendormenu();
 void stockinmenu();
 void stockoutmenu();
 
-void loadData();
+/* stock.c */
+void stockmenu();
+
+/* COMMON FUNCTIONS */
+void loadFromFile();
 
 #endif

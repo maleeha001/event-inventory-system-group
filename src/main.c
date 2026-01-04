@@ -1,25 +1,18 @@
+#include <stdio.h>
 #include "headers.h"
 
-/* ===== TITLE ===== */
-void title()
-{
-    printf("********************************************\n");
-    printf("WELCOME TO EVENT INVENTORY MANAGEMENT SYSTEM\n");
-    printf("********************************************\n");
-}
-
-/* ===== MAIN MENU ===== */
-void mainmenu()
+int main()
 {
     int choice;
+
     while (1)
     {
-        printf("\n1. Event Items Inventory\n");
+        printf("\n===== EVENT INVENTORY SYSTEM =====\n");
+        printf("1. Item Management\n");
         printf("2. Vendor Management\n");
-        printf("3. Stock In (Purchase)\n");
-        printf("4. Stock Out (Event Usage)\n");
-        printf("5. Exit\n");
-        printf("Enter Choice: ");
+        printf("3. Stock Management\n");
+        printf("4. Exit\n");
+        printf("Enter choice: ");
         scanf("%d", &choice);
 
         switch (choice)
@@ -31,16 +24,13 @@ void mainmenu()
             vendormenu();
             break;
         case 3:
-            stockinmenu();
+            stockmenu();
             break;
         case 4:
-            stockoutmenu();
-            break;
-        case 5:
-            printf("Exiting Program...\n");
-            return;
+            printf("Exiting...\n");
+            return 0;
         default:
-            printf("Invalid Choice\n");
+            printf("Invalid choice!\n");
         }
     }
 }
