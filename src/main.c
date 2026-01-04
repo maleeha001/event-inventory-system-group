@@ -27,7 +27,7 @@ void mainmenu()
         case 1:
             itemmenu();
             break;
-        case 1:
+        case 2:
             vendormenu();
             break;
         case 3:
